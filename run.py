@@ -1,5 +1,11 @@
+"""
+A Code along project for basic understanding of a python project.
+"""
+
+from pprint import pprint
 import gspread
 from google.oauth2.service_account import Credentials
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -64,5 +70,25 @@ def update_sales_worksheet(data):
     print('Sales worksheet successfullt updated. \n')
 
 
-data = get_sales_data()
-sales_data = [int(num) for num in data]
+def calculate_surplus_data(sales_data):
+    """
+    Compares the sales with the stock to calculate surplus
+    """
+    print('Calculating surplus... \n')
+    stock = SHEET.worksheet('stock').get_all_values()
+    stock_row = stock[-1]
+    print(stock_row)
+
+
+def main():
+    """
+    Runs all program functions
+    """
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]
+    update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
+
+
+print('Welcome to the one and only place for your automated python sandwich.')
+main()
