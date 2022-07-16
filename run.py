@@ -70,14 +70,20 @@ def update_sales_worksheet(data):
     print('Sales worksheet successfullt updated. \n')
 
 
-def calculate_surplus_data(sales_data):
+def calculate_surplus_data(sales_row):
     """
     Compares the sales with the stock to calculate surplus
     """
     print('Calculating surplus... \n')
     stock = SHEET.worksheet('stock').get_all_values()
     stock_row = stock[-1]
-    print(stock_row)
+
+    surplus_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - int(sales)
+        surplus_data.append(surplus)
+
+    return surplus_data
 
 
 def main():
