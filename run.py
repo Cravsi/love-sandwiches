@@ -2,7 +2,6 @@
 A Code along project for basic understanding of a python project.
 """
 
-from pprint import pprint
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -28,7 +27,7 @@ def get_sales_data():
         print('Data should be six numbers, separated by commas')
         print('Example: 10, 20, 30, 40 ... etc. \n')
 
-        data_str = input('Enter your data here: ')
+        data_str = input('Enter your data here: \n') # new line required due to heroku quirk.
         print(f'The data provided is {data_str}')
 
         sales_data = data_str.split(",")
